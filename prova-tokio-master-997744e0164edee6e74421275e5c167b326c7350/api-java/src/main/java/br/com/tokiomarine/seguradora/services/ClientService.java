@@ -57,16 +57,16 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    private void copyDtoToEntity(ClientDTO clientDTO, Client client) {
-        client.setFirstName(clientDTO.getFirstName());
-        client.setLastName(clientDTO.getLastName());
-        client.setEmail(clientDTO.getEmail());
+    private void copyDtoToEntity(ClientDTO clientDTO, Client entity) {
+        entity.setFirstName(clientDTO.getFirstName());
+        entity.setLastName(clientDTO.getLastName());
+        entity.setEmail(clientDTO.getEmail());
 
-        client.getAddresses().clear();
+        entity.getAddresses().clear();
         for (AddressDTO addressDTO : clientDTO.getAddresses()) {
             Address address = new Address();
             address.setId(addressDTO.getId());
-            client.getAddresses().add(address);
+            entity.getAddresses().add(address);
         }
     }
 }

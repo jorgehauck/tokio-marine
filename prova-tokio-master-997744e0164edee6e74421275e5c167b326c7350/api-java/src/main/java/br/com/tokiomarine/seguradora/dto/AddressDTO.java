@@ -15,7 +15,7 @@ public class AddressDTO {
     private String city;
     private String state;
     private String country;
-    private ClientDTO client;
+    private Long clientId;
     public AddressDTO() {}
     public AddressDTO(Long id, String address, String number, String complement, String postalCode, String city, String state, String country, ClientDTO client) {
         this.id = id;
@@ -37,7 +37,7 @@ public class AddressDTO {
         city = entity.getCity();
         state = entity.getState();
         country = entity.getCountry();
-        client = new ClientDTO(entity.getClient());
+        clientId = entity.getClient().getId();
     }
 
     public Long getId() {
@@ -104,11 +104,11 @@ public class AddressDTO {
         this.country = country;
     }
 
-    public ClientDTO getClient() {
-        return client;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClient(ClientDTO client) {
-        this.client = client;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 }

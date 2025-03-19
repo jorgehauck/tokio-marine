@@ -32,6 +32,7 @@ public class ClientDTO {
         email = entity.getEmail();
         addresses = entity.getAddresses().stream().map(x -> new AddressDTO(x)).collect(Collectors.toList());
     }
+
     public Long getId() {
         return id;
     }
