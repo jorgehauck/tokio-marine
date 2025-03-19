@@ -65,7 +65,7 @@ public class ClientService {
         client.getAddresses().clear();
         for (AddressDTO addressDTO : clientDTO.getAddresses()) {
             Address address = new Address();
-            address.setId(clientDTO.getId());
+            address.setId(addressDTO.getId());
             client.getAddresses().add(address);
         }
     }
