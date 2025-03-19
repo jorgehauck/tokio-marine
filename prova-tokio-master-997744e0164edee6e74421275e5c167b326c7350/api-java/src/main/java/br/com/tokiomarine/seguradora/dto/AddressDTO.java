@@ -17,7 +17,7 @@ public class AddressDTO {
     private String country;
     private Long clientId;
     public AddressDTO() {}
-    public AddressDTO(Long id, String address, String number, String complement, String postalCode, String city, String state, String country, ClientDTO client) {
+    public AddressDTO(Long id, String address, String number, String complement, String postalCode, String city, String state, String country, Long clientId) {
         this.id = id;
         this.address = address;
         this.number = number;
@@ -26,6 +26,7 @@ public class AddressDTO {
         this.city = city;
         this.state = state;
         this.country = country;
+        this.clientId = clientId;
     }
 
     public AddressDTO(Address entity) {
@@ -37,7 +38,7 @@ public class AddressDTO {
         city = entity.getCity();
         state = entity.getState();
         country = entity.getCountry();
-        clientId = entity.getClient().getId();
+        clientId = (entity.getClient() != null) ? entity.getClient().getId() : null;
     }
 
     public Long getId() {

@@ -1,5 +1,7 @@
 package br.com.tokiomarine.seguradora.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultDTO {
     private String street;
     private String complement;

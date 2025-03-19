@@ -63,10 +63,21 @@ public class ClientService {
         entity.setEmail(clientDTO.getEmail());
 
         entity.getAddresses().clear();
-        for (AddressDTO addressDTO : clientDTO.getAddresses()) {
-            Address address = new Address();
-            address.setId(addressDTO.getId());
-            entity.getAddresses().add(address);
+        if (clientDTO.getAddresses() != null) {
+            for (AddressDTO addressDTO : clientDTO.getAddresses()) {
+                Address address = new Address();
+                address.setAddress(addressDTO.getAddress());
+                address.setNumber(addressDTO.getNumber());
+                address.setComplement(addressDTO.getComplement());
+                address.setPostalCode(addressDTO.getPostalCode());
+                address.setCity(addressDTO.getCity());
+                address.setState(addressDTO.getState());
+                address.setCountry(addressDTO.getCountry());
+
+                address.setClient(entity);
+
+                entity.getAddresses().add(address);
+            }
         }
     }
 }
