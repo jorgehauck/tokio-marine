@@ -11,7 +11,7 @@ A API deverá conter as seguintes características:
 1. CRUD de usuários
 2. CRUD dos endereços do usuário
 
-**Consumir um serviço rest**
+📡 **Consumir um serviço rest**
 
 Você devera consumir o seguinte serviço para retorna o endereço dado o CEP
 
