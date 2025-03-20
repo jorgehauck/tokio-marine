@@ -11,7 +11,7 @@ A API deverá conter as seguintes características:
 1. CRUD de usuários
 2. CRUD dos endereços do usuário
 
-**Consumir um serviço rest**
+📡 **Consumir um serviço rest**
 
 Você devera consumir o seguinte serviço para retorna o endereço dado o CEP
 
@@ -45,8 +45,12 @@ $ curl  https://api.brasilaberto.com/v1/zipcode/01001000
     }
 }
 ```
+# 🔑 Configuração da API externa
+Antes de iniciar a aplicação, defina a variável de ambiente `API_KEY` com a chave da API externa no arquivo application.properties
+```sh
+api.key=${API_KEY}
 
-
+```
 ## Interface (Opcional)
 
 Criar uma interface consumindo os serviços desenvolvidos utilizando uma das tecnologias abaixo:
