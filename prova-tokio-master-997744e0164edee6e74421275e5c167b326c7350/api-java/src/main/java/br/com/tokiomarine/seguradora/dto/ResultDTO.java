@@ -14,6 +14,9 @@ public class ResultDTO {
     private String stateIbgeId;
     private String stateShortname;
     private String zipcode;
+    private Boolean error;
+    private Integer code;
+    private String message;
 
     public String getStreet() {
         return street;
@@ -101,5 +104,29 @@ public class ResultDTO {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public Boolean getError() {
+        return error;
+    }
+
+    public void setError(Boolean error) {
+        this.error = error;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

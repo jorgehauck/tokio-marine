@@ -1,18 +1,22 @@
 package br.com.tokiomarine.seguradora.controllers.handlers;
 
+import br.com.tokiomarine.seguradora.dto.ApiErrorResponseDTO;
 import br.com.tokiomarine.seguradora.dto.CustomError;
 import br.com.tokiomarine.seguradora.dto.ValidationError;
-import br.com.tokiomarine.seguradora.services.exceptions.ExternalApiException;
 import br.com.tokiomarine.seguradora.services.exceptions.ResourceNotFoundException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.time.Instant;
+
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -31,10 +35,14 @@ public class ControllerExceptionHandler {
         }
         return ResponseEntity.status(status).body(err);
     }
-    @ExceptionHandler(ExternalApiException.class)
-    public ResponseEntity<CustomError> externalApiException(ExternalApiException e, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.NOT_FOUND;
-        CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+    @ExceptionHandler(HttpClientErrorException.class)
+    public ResponseEntity<ApiErrorResponseDTO> apiErrorResponse(HttpClientErrorException e, HttpServletRequest request) throws IOException {
+        HttpStatus status = e.getStatusCode();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ApiErrorResponseDTO errorMessage = objectMapper.readValue(e.getResponseBodyAsString(), ApiErrorResponseDTO.class);
+
+        ApiErrorResponseDTO err = new ApiErrorResponseDTO(errorMessage.getMeta(), errorMessage.getResult(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }

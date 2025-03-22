@@ -1,7 +1,6 @@
 package br.com.tokiomarine.seguradora.services;
 
 import br.com.tokiomarine.seguradora.dto.ApiResponseDTO;
-import br.com.tokiomarine.seguradora.services.exceptions.ExternalApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,22 +17,17 @@ public class ApiResponseService {
     private String apiKey;
 
     public ApiResponseDTO getDataAddresses(String zipCode) {
-        try {
-            String url = apiUrl + "/" + zipCode;
+        String url = apiUrl + "/" + zipCode;
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + apiKey);
-            headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-            HttpEntity<ApiResponseDTO> entity = new HttpEntity<>(headers);
+        HttpEntity<ApiResponseDTO> entity = new HttpEntity<>(headers);
 
-            ResponseEntity<ApiResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseDTO.class);
+        ResponseEntity<ApiResponseDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, ApiResponseDTO.class);
 
-            return response.getBody();
-        }
-        catch (Exception e) {
-            throw new ExternalApiException("Endereço não encontrado para o CEP informado! " + e.getMessage());
-        }
-
+        return response.getBody();
     }
 }
+

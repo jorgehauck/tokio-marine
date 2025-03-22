@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping(value = "/zip-code")
 @Api(value = "Serviço de CEP", description = "Busca informações do endereço a partir do CEP pela API Brasil Aberto.")
